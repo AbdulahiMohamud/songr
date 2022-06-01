@@ -5,14 +5,33 @@
     <title>Hello there!</title>
 </head>
 <body>
-<li th:each="album : ${albums}">
-    <span th:text="${'Title: ' + album.title}"></span>
-    <br><span th:text="${'Artist: ' + album.artist}"></span>
-    <br><span th:text="${'Songs: ' + album.numSongs}"></span>
-    <br><span th:text="${'Listen Duration: ' + album.length + ' minutes'}"></span>
+
+    <form action="addAlbum" method="post">
+        <fieldset>
+            <legend>Add Album</legend>
+            <label for="title">Title</label>
+            <input type="text" name="title" placeholder="Album Title">
+            <label for="artist">Artist</label>
+            <input type="text" name="artist" placeholder="Album Artist">
+            <label for="numSongs">Number of songs</label>
+            <input type="number" name="numSongs" placeholder="# of Songs">
+            <label for="length">Album Duration</label>
+            <input type="number" name="length" placeholder="Album Duration">
+            <label for="imgUrl">Album Cover image URL</label>
+            <input type="text" name="imgUrl" placeholder="Image Url">
+
+            <input type="submit" value="Add Album">
+
+        </fieldset>
+    </form>
+<ul th:each="album : ${albums}">
+    <li th:text="${'Title: ' + album.title}"></li>
+    <br><li th:text="${'Artist: ' + album.artist}"></li>
+    <br><li th:text="${'Songs: ' + album.numSongs}"></li>
+    <br><li th:text="${'Listen Duration: ' + album.length + ' minutes'}"></li>
     <br><img th:src="${album.imgUrl}" th:alt="${album.title}">
     <br><br>
-</li>
+</ul>
 
 
 </body>
