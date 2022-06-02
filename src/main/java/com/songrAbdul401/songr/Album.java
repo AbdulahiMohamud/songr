@@ -1,6 +1,7 @@
 package com.songrAbdul401.songr;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Album {
@@ -12,6 +13,11 @@ public class Album {
     private int numSongs;
     private int length;
     private String imgUrl;
+
+
+
+    @OneToMany(mappedBy = "album")
+    private List<Song> songsInAlbum;
 
     public Album() {
 
@@ -71,5 +77,13 @@ public class Album {
 
     public String getImgUrl() {
         return imgUrl;
+    }
+
+    public List<Song> getSongsInAlbum() {
+        return songsInAlbum;
+    }
+
+    public void setSongsInAlbum(List<Song> songsInAlbum) {
+        this.songsInAlbum = songsInAlbum;
     }
 }
