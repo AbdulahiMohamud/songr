@@ -25,12 +25,32 @@
         </fieldset>
     </form>
 <ul th:each="album : ${albums}">
+    <img th:src="${album.imgUrl}" th:alt="${album.title}">
     <li th:text="${'Title: ' + album.title}"></li>
-    <br><li th:text="${'Artist: ' + album.artist}"></li>
-    <br><li th:text="${'Songs: ' + album.numSongs}"></li>
-    <br><li th:text="${'Listen Duration: ' + album.length + ' minutes'}"></li>
-    <br><img th:src="${album.imgUrl}" th:alt="${album.title}">
-    <br><br>
+    <li th:text="${'Artist: ' + album.artist}"></li>
+    <li th:text="${'Listen Duration: ' + album.length + ' minutes'}"></li>
+   <li th:text="${'Songs: ' + album.numSongs}"></li>
+    <br>
+    <div>Songs</div>
+    <ul th:each = "song : ${album.songsInAlbum}">
+        <li th:text="${song.songTitle}"></li>
+    </ul>
+
+    <form action="addsong" method="post">
+        <fieldset>
+            <legend>Add song to Album</legend>
+            <label for="songTitle">Song Title</label>
+            <input type="text" name="songTitle" id="songTitle" placeholder="SongTitle">
+            <label for="songLength">Song Length</label>
+            <input type="text" name="songLength" id="songLength" placeholder="songLength">
+            <label for="trackNumber"># of song</label>
+            <input type="text" name="trackNumber" id="trackNumber" placeholder="# of song">
+            <input type="hidden" name="onAlbum" id="onAlbum" th:value="${album.title}" >
+
+            <input type="submit" value="Add Album">
+        </fieldset>
+    </form>
+
 </ul>
 
 
